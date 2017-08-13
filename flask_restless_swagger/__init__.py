@@ -176,6 +176,13 @@ class SwagAPIManager(object):
                 self.swagger['paths']["{0}/{{{1}Id}}".format(path, schema.lower())][method] = {
                     'tags': [schema],
                     'parameters': [{
+                        'name': schema.lower() + 'Id',
+                        'in': 'path',
+                        'description': 'ID of ' + schema,
+                        'required': True,
+                        'type': 'integer'
+                    },
+                    {
                         'name': name,
                         'in': 'body',
                         'description': schema,
@@ -271,3 +278,4 @@ class SwagAPIManager(object):
     def swagger_blueprint(self):
 
         return swagger
+
